@@ -1,0 +1,26 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: ZUUL-GATEWAY
+
+zuul:
+  ignored-services: "*"
+  routes:
+    USER-SERVICE:
+      path: /user-api/**
+      #strip-prefix: false
+      serviceId: USER-SERVICE
+    department-service:
+      url: http://localhost:9001/
+      #strip-prefix: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    routes:
+      enabled: true
